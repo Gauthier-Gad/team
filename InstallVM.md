@@ -175,3 +175,8 @@ Configure proxy
 Preferences >> Package Settings >> Package Control >> Settings – User: // Proxy Settings "http_proxy": "your. proxy
 Select Preferences , Package Control : Install Pacakge , select MarkdownPreview 
 
+Also pour git
+
+git config --global http.proxy http://proxywsg.crlc.intra:3128
+
+
