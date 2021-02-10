@@ -213,16 +213,13 @@ Auto-Mount
 sudo mount -av (will mount every thing and ask for password)
 ```
 
-Proxy for wget
-nano /etc/wgetrc (you can't modify that on server)
+Proxy for wget  
+
+nano /etc/wgetrc (you can't modify that on server)  
+
 https_proxy = http://proxywsg.crlc.intra:3128 
 http_proxy = http://proxywsg.crlc.intra:3128
 ftp_proxy = http://proxywsg.crlc.intra:3128
-
-
-
-Preferences >> Package Settings >> Package Control >> Settings – User: // Proxy Settings "http_proxy": "your. proxy
-Select Preferences , Package Control : Install Pacakge , select MarkdownPreview 
 
 Git
 
