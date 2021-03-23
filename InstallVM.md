@@ -6,13 +6,15 @@
 
 I presume you already downloaded an iso image ubuntu-18.04.5-desktop-amd64.iso from here https://releases.ubuntu.com/18.04/.  
 
-I select 6 cores and 300 Giga for the drive in linux. My machine is 16Go with 12 cores. 
+You will start WMware Workstation Player 16 with it.
 
 When you try to connect, at first, one main problem is that your keyboard is qwerty whereas it's an azerty.  
 
 If you want to change that, you need to do updates, but you need an internet connexion.  
 
-Also you need to install open-vm-tools, open-vm-desktop, to copy paste stuffs between host and guest, and have a full screen for the linux guest.
+In the next section, I will explain how to se VMware player and configure internet.
+
+Also you will need to install open-vm-tools, open-vm-desktop, to copy paste stuffs between host and guest, and have a full screen for the linux guest.
 
 
 1.How to setup Internet Connection for Virtual Machines in VMWare
@@ -25,6 +27,8 @@ Check this video to install the network correctly.
 
 > https://www.youtube.com/watch?v=H2j3nyl4muQ&ab_channel=IT%26Software  
 
+You can configure 6 cores, 8Go Ram and 300Go Disk for the VM under linux if your machine is 16Go RAM with 12 cores for example.
+
 You then look into Network/Proxy using "Show Applications" button search.  
 
 You chose manual and you configure as show below.  
@@ -32,9 +36,9 @@ You chose manual and you configure as show below.
 
 You will use proxywsg.crlc.intra:3128
 
-When you are outside the IRCM, you select disabled for proxy configuration.
+When you are outside the IRCM, you select disabled for proxy configuration.( but with this setup, in windows, you started the VPN before to start the VM)
 
-Now you should access internet by browser but you still can't update apt packages.  
+Anyway, for now you should access internet by browser but you still can't update apt packages.  
 
 
 2.How to setup Internet Connection for APT packages updates
