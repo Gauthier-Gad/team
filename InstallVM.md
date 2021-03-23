@@ -17,7 +17,7 @@ In the next section, I will explain how to se VMware player and configure intern
 Also you will need to install open-vm-tools, open-vm-desktop, to copy paste stuffs between host and guest, and have a full screen for the linux guest.
 
 
-### 1.How to setup Internet Connection for Virtual Machines in VMWare
+### 1.How to setup Internet Connection inside linux VM
 
 ---
 
