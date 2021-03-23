@@ -1,8 +1,14 @@
-## Make a virtual machine with VMware
+
+
+## Make a virtual machine with VMware Workstation Player 16
 
 ---
 
-One main problem is that your keyboard is qwerty whereas it's an azerty.  
+I presume you already downloaded an iso image ubuntu-18.04.5-desktop-amd64.iso from here https://releases.ubuntu.com/18.04/.  
+
+I select 6 cores and 300 Giga for the drive in linux. My machine is 16Go with 12 cores. 
+
+When you try to connect, at first, one main problem is that your keyboard is qwerty whereas it's an azerty.  
 
 If you want to change that, you need to do updates, but you need an internet connexion.  
 
@@ -13,16 +19,23 @@ Also you need to install open-vm-tools, open-vm-desktop, to copy paste stuffs be
 
 ---
 
+When you have access to internet inside the VM, you are safe and you can install whathever you want so that's the first thing to do.
+
 Check this video to install the network correctly.  
 
 > https://www.youtube.com/watch?v=H2j3nyl4muQ&ab_channel=IT%26Software  
 
-You then look into Proxy.
-You chose manual.
+You then look into Network/Proxy using "Show Applications" button search.  
+
+You chose manual and you configure as show below.  
+![alt text](https://github.com/ZheFrenchKitchen/team/blob/master/img/network.png "How to configure proxy in Ubuntu.")
 
 You will use proxywsg.crlc.intra:3128
 
-Now you should access internet by browser but you still can't update apt packages.
+When you are outside the IRCM, you select disabled for proxy configuration.
+
+Now you should access internet by browser but you still can't update apt packages.  
+
 
 2.How to setup Internet Connection for APT packages updates
 
@@ -239,3 +252,6 @@ curl --proxy http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/g
 
 wget -e use_proxy=yes -e http_proxy=http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_36/gencode.v36.transcripts.fa.gz
 ```
+# Wifi
+
+https://ubuntuhandbook.org/index.php/2018/08/no-wifi-adapter-found-hp-laptops-ubuntu-18-04/
