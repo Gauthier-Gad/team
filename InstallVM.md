@@ -17,7 +17,7 @@ In the next section, I will explain how to se VMware player and configure intern
 Also you will need to install open-vm-tools, open-vm-desktop, to copy paste stuffs between host and guest, and have a full screen for the linux guest.
 
 
-1.How to setup Internet Connection for Virtual Machines in VMWare
+### 1.How to setup Internet Connection for Virtual Machines in VMWare
 
 ---
 
@@ -41,7 +41,7 @@ When you are outside the IRCM, you select disabled for proxy configuration.( but
 Anyway, for now you should access internet by browser but you still can't update apt packages.  
 
 
-2.How to setup Internet Connection for APT packages updates
+### 2.How to setup Internet Connection for APT packages updates
 
 ---
 
@@ -68,14 +68,14 @@ But for packages you need to change /etc/apt/apt.conf.d/proxy.conf
 }
 
 
-2.Keyboard Configuration
+### 3. Keyboard Configuration
 
 ---
 
 You go region and langage and you chose French (azerty) . Reboot.
 Change at the top right the icon of keyboard. English is the one by default. Select french.
 
-4. Install open-vm-tools
+### 4. Install open-vm-tools
 
 ---
 
@@ -89,7 +89,7 @@ In order to have full screen to copy past stuffs.
 }
 ```
 
-3. Connect to server
+### 5. Connect to server
 
 ---
 
@@ -131,9 +131,11 @@ https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
 bash Anaconda3-2020.11-Linux-x86_64.sh
 
-# Install Eclipse
+### 6. Install IDE Eclipse (not mandatory, sublime text is also a good alternative)
 
 ---
+
+An IDE is an environement to edit your code. (Rstudio is an IDE for R, Eclipse can be use whith all langages R,python,bash...)
 
 Prob with proxy
 
