@@ -219,7 +219,7 @@ sudo vmhgfs-fuse .host:/SharedData /mnt/hgfs/ -o allow_other -o uid=1000
 vmware-hgfsclient
 ```
 
-my-shared-folder is SharedData
+my-shared-folder is SharedData created in windows in Documents directory (I think you need to configure that somewhere in WM Player since it will not find the path to the shared directory).
 
 ```shell
  sudo vmhgfs-fuse .host:/SharedData /mnt/hgfs/ -o allow_other -o uid=1000
@@ -236,11 +236,12 @@ Use shared folders between VMWare guest and host
 
 ssh villemin@compute0 
 
-Mount remote serveur
+#### Mount remote serveur
 
 You can create a rsa key.  
-Add it to the remote server in autorized key and then connect without password confirmation each time.
-**NB** : Eric the IT guy dit it for me but you can do it by yourself on bionfio0.
+Add it to the remote server in autorized key and then connect without password confirmation each time.  
+
+**NB** : Eric the IT guy dit it for me but you can do it by yourself on bioinfo0.
 
 Create a dir on desktop called serveur or anything else, and then do :
 
@@ -253,6 +254,10 @@ sudo umout /home/jp/Desktop/serveur/
 ####  Auto-Mount is better !
 
 ---
+
+You add that in your /etc/fstab. 
+
+If you want to do that you need to create your id_rsa and push it to bioinfo0 before.
 
 > villemin@compute0:/data/ /home/jp/Desktop/serveur fuse.sshfs defaults,_netdev,IdentityFile=/home/jp/.ssh/id_rsa,allow_other   0   0 
 
@@ -282,9 +287,12 @@ curl --proxy http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/g
 wget -e use_proxy=yes -e http_proxy=http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_36/gencode.v36.transcripts.fa.gz
 ``` 
 
-#### Git
+#### Git (for experimented user...)
 
 ---
 
 git config --global http.proxy http://proxywsg.crlc.intra:3128
+
+It's boring when you switch from home to office because each time you need to reconfigure the proxy settings.
+
 
