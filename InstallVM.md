@@ -89,30 +89,33 @@ In order to have full screen to copy past stuffs.
 }
 ```
 
-### 5. Connect to server
+### 5. Connect to IRCM server from your VM
 
 ---
 
 You should ask IT guy to have an account.  
 
-CONNECT :
+#### CONNECT :
 
-```shell 
+---
+
+```shell
+#Connection
 ssh villemin@compute0.crlc.intra
-Mount SERVER :
-ssftp villemin@compute0.crlc.intra
 
-sudo apt-get install sshfs
+#Password will be asked.
+#If you want to connect without password requirement , you can send you rsa key to server (see https://www.ssh.com/ssh/copy-id#copy-the-key-to-a-server)
+```
+
+```shell
+Mount SERVER : (we automate a mount later to access server in explorer, read below)
+ssftp villemin@compute0.crlc.intra
 ```
 
 https://www.tecmint.com/sshfs-mount-remote-linux-filesystem-directory-using-ssh/
 
-You will need to share file between windows and ubuntu.
 
-/usr/bin/vmhgfs-fuse .host:/ /home/user1/shares -o subtype=vmhgfs-fuse,allow_other	
-
-
-Download R-studio
+#### Download R-studio
 
 ---
 
@@ -123,9 +126,13 @@ sudo apt -y install r-base
 sudo apt install gdebi-core rstudio-1.4.1103-amd64.deb
 ```
 
-Download Conda (To install bioinfo softwares)
+####  Download Conda (To install bioinfo softwares)
 
 ---
+
+You can do that on both your VM and server home.  
+For example,with conda you can install your own R version and packages, STAR aligner, and a lot of other tools.  
+No need to be root or an external IT guy.
 
 https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
@@ -137,7 +144,7 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
 An IDE is an environement to edit your code. (Rstudio is an IDE for R, Eclipse can be use whith all langages R,python,bash...)
 
-Prob with proxy
+Prob with proxy, read link below.
 
 https://mkyong.com/web-development/how-to-configure-proxy-settings-in-eclipse/
 
@@ -146,10 +153,12 @@ sudo apt install default-jre
 sudo snap set system proxy.http="http://proxywsg.crlc.intra:3128"
 sudo snap set system proxy.https="http://proxywsg.crlc.intra:3128"
 ```
-You need to do that in order TO DO THAT :
+You need to do that in order to what's next :
 ```shell 
 sudo snap install --classic eclipse
 ```
+
+Inside Eclipse :   
 
 Windows NetWork Connection > Select Manuel and set proxy for http and https (not SOCKS)
 Check for  Updates
@@ -158,7 +167,9 @@ http://www.pydev.org/updates
 Click and drag to recognise Eclipse
 https://marketplace.eclipse.org/content/statet-r
 
-Prob with proxy when installing packages
+Probems with proxy when installing packages...due to this fucking proxy.
+
+### 7. R notes
 
 ---
 
@@ -167,12 +178,16 @@ Sys.getenv(https_proxy) is empty
 Sys.setenv(https_proxy="http://proxywsg.crlc.intra:3128")
 ```
 
-Modify some stuffs to use 4.0 R version not 3.4.4
-sudo nano /etc/apt/sources.list
+Modify some stuffs to use R 4 version not 3.4.4  
+```shell 
+sudo nano /etc/apt/sources.list  
+```
 ADD at the end deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/
+
+```shell 
 sudo apt update
 sudo apt-get install r-base
-
+```
 
 ```shell 
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -180,11 +195,22 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install()
 ```
 
-Install a package : 
+#### Install a package in R : 
+
+---
 
 ```shell  
 > BiocManager::install(c("edgeR"))
 ```
+Note you can install R package also with conda...I did that on the remote server to install biocmanager because i had trouble to set up my own dir for the packages.
+
+
+#### Share file between windows and VM.
+
+---
+
+That useful when you have something you created on linux (a png file you want to incorporate in publication written under word office ) that you want to retrieve in windows.
+
 https://askubuntu.com/questions/29284/how-do-i-mount-shared-folders-in-ubuntu-using-vmware-tools
 
 ```shell
@@ -206,7 +232,7 @@ Use shared folders between VMWare guest and host
 
 >.host:/SharedData    /mnt/hgfs/    fuse.vmhgfs-fuse    defaults,allow_other,uid=1000     0    0
 
-Connect remote serveur
+#### Connect remote server
 
 ssh villemin@compute0 
 
@@ -214,15 +240,17 @@ Mount remote serveur
 
 You can create a rsa key.  
 Add it to the remote server in autorized key and then connect without password confirmation each time.
-NB : Eric the IT guy dit it for me but you can do it by yourself on bionfio0.
+**NB** : Eric the IT guy dit it for me but you can do it by yourself on bionfio0.
+
+Create a dir on desktop called serveur or anything else, and then do :
 
 ```shell
-/home/jp/Desktop/serveur
 sshfs villemin@compute0:/data/ /home/jp/Desktop/serveur
+# remove the dir (content is not erased)
 sudo umout /home/jp/Desktop/serveur/
 ```
 
-Auto-Mount 
+####  Auto-Mount is better !
 
 ---
 
@@ -232,32 +260,31 @@ Auto-Mount
 sudo mount -av (will mount every thing and ask for password)
 ```
 
-Proxy for wget  
+#### Proxy for wget  (don't think it's mandatory, just with the network connection you configured before it should work) 
 
-nano /etc/wgetrc (you can't modify that on server)  
 
+That didn't work the first time because the ftp_proxy was no configured.
+
+> nano /etc/wgetrc (you can't modify that on server)  
+
+```shell
 https_proxy = http://proxywsg.crlc.intra:3128 
 http_proxy = http://proxywsg.crlc.intra:3128
 ftp_proxy = http://proxywsg.crlc.intra:3128
+'''
 
-Git
+Wget/Curl via proxy workaround...
 
----
-
-git config --global http.proxy http://proxywsg.crlc.intra:3128
-
-
-Wget/ Curl 
-
----
-
-Wget/Curl via proxy...
 ```shell
 wget -e use_proxy=yes -e http_proxy=http://proxywsg.crlc.intra:3128 https://github.com/ZheFrenchKitchen/RNASEQ-1/archive/master.zip
 curl --proxy http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_36/gencode.v36.primary_assembly.annotation.gtf.gz -o gencode.v36.primary_assembly.annotation.gtf.gz
 
 wget -e use_proxy=yes -e http_proxy=http://proxywsg.crlc.intra:3128 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_36/gencode.v36.transcripts.fa.gz
-```
-# Wifi
+``` 
 
-https://ubuntuhandbook.org/index.php/2018/08/no-wifi-adapter-found-hp-laptops-ubuntu-18-04/
+#### Git
+
+---
+
+git config --global http.proxy http://proxywsg.crlc.intra:3128
+
