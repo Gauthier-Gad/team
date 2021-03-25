@@ -182,7 +182,11 @@ Modify some stuffs to use R 4 version not 3.4.4
 ```shell 
 sudo nano /etc/apt/sources.list  
 ```
-ADD at the end deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/
+Add at the end deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/
+
+```shell
+sudo apt-key adv --keyserver keyserver.ubuntu.com --keyserver-options http-proxy=http://proxywsg.crlc.intra:3128 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+```
 
 ```shell 
 sudo apt update
