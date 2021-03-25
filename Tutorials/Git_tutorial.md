@@ -1,7 +1,7 @@
 ## How to use git
 
 
-'''shell 
+```shell
 
 # Create git repository, the remote and push
 git init  .
@@ -42,4 +42,4 @@ git revert --no-commit <commit>
 # You get the list of your git
 git log --oneline
 
-'''
+```
