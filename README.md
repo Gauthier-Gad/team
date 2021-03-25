@@ -1,2 +1,5 @@
-# team
-Stuffs to share with people of the team.
+# Team
+
+----
+
+Code stuffs to share with people of the lab.
