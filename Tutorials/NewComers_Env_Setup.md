@@ -295,4 +295,19 @@ git config --global http.proxy http://proxywsg.crlc.intra:3128
 
 It's boring when you switch from home to office because each time you need to reconfigure the proxy settings.
 
+#### R version 4
+
+You need to set up some environements variable attached to your conda env. 
+
+```shell
+conda create --name r4-base
+conda env config vars set R_LIBS_USER=/data/USERS/villemin/anaconda3/envs/r4-base/lib/R/library
+conda env config vars set R_LIBS=/data/USERS/villemin/anaconda3/envs/r4-base/lib/R/library
+
+# For example, in another env, to avoid conflict
+
+conda activate Pit-3.7.7
+conda env config vars set R_LIBS_USER=/data/USERS/villemin/anaconda3/envs/Pit-3.7.7/lib/R/library
+conda env config vars set R_LIBS=/data/USERS/villemin/anaconda3/envs/Pit-3.7.7/lib/R/library
+```
 
