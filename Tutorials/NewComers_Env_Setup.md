@@ -326,6 +326,8 @@ IRkernel::installspec(name = 'ir40', displayname = 'R 4.0')
 
 # Screen and ctrl-a + ctrl-d to detach it and let it run in background forever
 screen -S JUPITER
+conda activate r4-base
+# or modify stuffs in ~/.screenrc but need to check on internet what to modify
 # Port 22 and http port must be open 
 jupyter-lab --ip 0.0.0.0 --port 3980 --no-browser
 
