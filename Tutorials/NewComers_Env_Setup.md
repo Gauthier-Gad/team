@@ -304,6 +304,9 @@ conda create --name r4-base
 conda env config vars set R_LIBS_USER=/data/USERS/villemin/anaconda3/envs/r4-base/lib/R/library
 conda env config vars set R_LIBS=/data/USERS/villemin/anaconda3/envs/r4-base/lib/R/library
 
+# This one will install r.4
+ conda install -c conda-forge r-base
+
 # For example, in another env, to avoid conflict
 
 conda activate Pit-3.7.7
