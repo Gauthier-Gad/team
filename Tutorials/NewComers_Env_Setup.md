@@ -313,4 +313,25 @@ conda activate Pit-3.7.7
 conda env config vars set R_LIBS_USER=/data/USERS/villemin/anaconda3/envs/Pit-3.7.7/lib/R/library
 conda env config vars set R_LIBS=/data/USERS/villemin/anaconda3/envs/Pit-3.7.7/lib/R/library
 ```
+#### Remote Jupiter Lab
 
+```shell
+conda install -c conda-forge jupyterlab
+jupyter notebook --generate-config
+jupyter notebook password
+
+BiocManager::install('IRkernel')
+#Depending on the version you set up
+IRkernel::installspec(name = 'ir40', displayname = 'R 4.0')
+
+# Screen and ctrl-a + ctrl-d to detach it and let it run in background forever
+screen -S JUPITER
+# Port 22 and http port must be open 
+jupyter-lab --ip 0.0.0.0 --port 3980 --no-browser
+
+# On you local machine run this , for secure ssh tunelling
+ssh -N -f -L 8888:localhost:3980 villemin@compute0
+
+# Now you can access to you remote files in your browser
+http://compute0:3980
+``
